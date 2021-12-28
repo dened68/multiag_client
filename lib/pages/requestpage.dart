@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:multiag_client/objects/Request.dart';
-import 'package:multiag_client/objects/User.dart';
+import 'package:multiag_client/pages/imageViewPage.dart';
 import 'package:flutter/material.dart';
 
 class Requestpage extends StatelessWidget {
@@ -25,9 +24,32 @@ class Requestpage extends StatelessWidget {
             padding: EdgeInsets.zero,
             child: Column(
               children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ImageViewPage(
+                                    url: order.ImageUrl,
+                                  )));
+                    },
+                    child: Container(
+                      height: 270,
+                      decoration:
+                          BoxDecoration(color: Colors.white.withOpacity(0)),
+                      child: Row(
+                        children: [Text("")],
+                      ),
+                    ),
+                  )),
+                ),
+
                 //first block
                 Padding(
-                  padding: EdgeInsets.fromLTRB(10, 310, 10, 10),
+                  padding: EdgeInsets.fromLTRB(10, 21, 10, 10),
                   child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -46,12 +68,6 @@ class Requestpage extends StatelessWidget {
                         children: [
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                            child: Text(
-                              ("№ ${order.id}"),
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -60,73 +76,93 @@ class Requestpage extends StatelessWidget {
                                     fontSize: 30, fontWeight: FontWeight.bold)),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                             child: Text(order.TechnicalProcessName,
                                 style: TextStyle(
                                   fontSize: 22,
                                 )),
                           ),
+                          // Padding(
+                          //   padding: EdgeInsets.fromLTRB(00, 25, 00, 40),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.center,
+                          //     children: [
+                          //       Text(
+                          //         "${order.Price}",
+                          //         style: TextStyle(
+                          //             fontSize: 30,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       Image(
+                          //         image: AssetImage(
+                          //           'assets/ruble.png',
+                          //         ),
+                          //         width: 24,
+                          //         height: 24,
+                          //       )
+                          //     ],
+                          //   ),
+                          // ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(00, 25, 00, 40),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.attach_money_sharp,
-                                  size: 32,
-                                  color: Colors.blue[700],
-                                ),
-                                Text(
-                                  "${order.Price}",
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                             child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.timelapse,
-                                        color: Colors.grey[800],
-                                      ),
-                                      Text("25 мин",
-                                          style: TextStyle(
-                                              color: Colors.grey[800])),
-                                    ],
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(18, 0, 0, 0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.timelapse,
+                                          color: Colors.grey[800],
+                                        ),
+                                        Text("10 мин",
+                                            style: TextStyle(
+                                                color: Colors.grey[800])),
+                                      ],
+                                    ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.directions_walk,
-                                        color: Colors.grey[800],
-                                      ),
-                                      Text("25 м",
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(29, 0, 00, 0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "${order.Price}",
                                           style: TextStyle(
-                                              color: Colors.grey[800])),
-                                    ],
+                                            fontSize: 17,
+                                          ),
+                                        ),
+                                        Image(
+                                          image: AssetImage(
+                                            'assets/ruble.png',
+                                          ),
+                                          width: 18,
+                                          height: 18,
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.handyman,
-                                        color: Colors.grey[800],
-                                      ),
-                                      Text(
-                                        "сверлильный станок",
-                                        style:
-                                            TextStyle(color: Colors.grey[800]),
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 0, 18, 0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.handyman,
+                                          color: Colors.grey[800],
+                                        ),
+                                        Text(
+                                          "Станок №3",
+                                          style: TextStyle(
+                                              color: Colors.grey[800]),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ]),
                           ),
@@ -135,42 +171,173 @@ class Requestpage extends StatelessWidget {
                 ),
                 //second block
                 Padding(
-                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
                   child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.7),
-                            spreadRadius: 2,
-                            blurRadius: 3,
-                            offset: Offset(0, 2), // changes position of shadow
-                            // changes position of shadow
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.7),
+                          spreadRadius: 2,
+                          blurRadius: 3,
+                          offset: Offset(0, 2), // changes position of shadow
+                          // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Станок",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 23,
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 50),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
                               children: [
-                                Text("тут какая нибудь доп информмация"),
+                                Text(
+                                  "Вид:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Группа:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Тип:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Название:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
                               ],
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 50, 0, 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Column(
                               children: [
-                                Text("И Тут"),
+                                Text(
+                                  "Сверлильный",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "2",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Настольно-Сверлильный",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "SV_NCV_164G2",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Text(
+                          "Инструмент",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 23,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  "Вид:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Группа:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Тип:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Название:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Размер:",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
                               ],
                             ),
-                          )
-                        ],
-                      )),
+                            Column(
+                              children: [
+                                Text(
+                                  "Лезвенный",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Фреза",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "Прямой",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "BORFREZA-B1020-6MM_2",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                                Text(
+                                  "23",
+                                  style: GoogleFonts.jura(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 //button
                 Padding(
@@ -182,7 +349,7 @@ class Requestpage extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.green,
+                            color: Colors.green[400],
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.7),
@@ -210,15 +377,13 @@ class Requestpage extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: Colors.deepOrange[900],
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.7),
                                 spreadRadius: 4,
                                 blurRadius: 4,
-                                offset:
-                                    Offset(0, 2), // changes position of shadow
-                                // changes position of shadow
+                                offset: Offset(0, 2),
                               ),
                             ],
                           ),

@@ -3,7 +3,7 @@ import 'package:multiag_client/objects/Request.dart';
 import 'package:multiag_client/drawer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:multiag_client/pages/requestpage.dart';
 
 class Home extends StatefulWidget {
@@ -31,29 +31,25 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text("Список запросов"),
       ),
-
       body: FutureBuilder<List<Request>>(
         future: request,
         builder: (context, snapshot) {
           return ((snapshot.data == null)
               ? Center(child: CircularProgressIndicator())
-              : GridView.count(
-                  crossAxisCount: 2,
-                  children: List.generate(snapshot.data!.length, (index) {
-                    return Center(
-                        child: _CadrStatelessWidget(
-                      request: snapshot.data![index],
-                    ));
-                  }),
+              : Padding(
+                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    children: List.generate(snapshot.data!.length, (index) {
+                      return Center(
+                          child: _CadrStatelessWidget(
+                        request: snapshot.data![index],
+                      ));
+                    }),
+                  ),
                 ));
         },
       ),
-      // GridView.count(
-      //   crossAxisCount: 2,
-      //   children: List.generate(100, (index) {
-      //     return Center(child: _CadrStatelessWidget());
-      //   }),
-      // )
     );
   }
 }
@@ -79,13 +75,12 @@ class _CadrStatelessWidget extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(request.ImageUrl),
+              image: AssetImage("assets/requestbg.png"),
               fit: BoxFit.cover,
               colorFilter: new ColorFilter.mode(
-                  Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                  Colors.black.withOpacity(1), BlendMode.dstATop),
             ),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            color: Colors.blue[200],
             boxShadow: [
               new BoxShadow(
                 color: Colors.grey,
@@ -95,43 +90,47 @@ class _CadrStatelessWidget extends StatelessWidget {
           ),
           child: Container(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      request.InstrumentName,
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        request.TechnicalProcessName,
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      request.TechnicalProcessName,
-                      style: TextStyle(fontSize: 20),
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.attach_money_sharp,
-                      size: 17,
-                      color: Colors.blue[700],
-                    ),
-                    Text(
-                      "${request.Price}",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(5, 4, 5, 4),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "${request.Price}",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          Image(
+                            image: AssetImage(
+                              'assets/ruble.png',
+                            ),
+                            width: 17,
+                            height: 17,
+                          )
+                        ],
+                      ),
+                      Text("12.12.2021")
+                    ],
+                  ),
                 )
               ],
             ),
